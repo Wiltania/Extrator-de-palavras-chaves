@@ -11,17 +11,49 @@ const palavraschaves = processarTexto(texto);
 
   campoResultado.textContent = palavraschaves.join(",");
 }
-function processarTexto(texto){
-let palavras = texto.split(/\P{L}+/u);
-  let frequencias = [];
-    for(let i in palavras) {
-        frequencias [i] = 0;
-    }
-    for (let j of palavras) {
-            if (i == j) {
-                frequencias [i]++;
-            }
-    console.log(frequencias)
+  function processarTexto(texto) {
+  let palavras = texto.split(/\P{L}+/u);
+  
+  const frequencias = contarFrequencias(palavras);
+  let ordenadas = Object.keys(frequencias).sort(ordenaPalavra);
+ console.log(ordenadas);
 
-    return palavras;}
+  return palavras;
+    function ordenaPalavra(p1, p2) {
+        return frequencias[p2] - frequencias[p1];
+
+         console.log(ordenadas);
+    return ordenadas.slice(0, 10);
+}
+  /*let frequencias = {};
+
+  for (let i of palavras) {
+    frequencias[i] = 0;
+
+    for (let j of palavras) {
+      if (i == j) {
+        frequencias[i]++;
+      }
+    }
   }
+
+  console.log(frequencias);
+
+  return palavras;*/
+}
+function contarFrequencias (palavras) {
+   let frequencias = {};
+
+  for (let i of palavras) {
+    frequencias[i] = 0;
+
+    for (let j of palavras) {
+      if (i == j) {
+        frequencias[i]++;
+      }
+    }
+  }
+
+  console.log(frequencias);
+
+  return palavras;}
