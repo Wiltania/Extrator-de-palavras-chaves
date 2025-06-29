@@ -1,3 +1,4 @@
+import {Palavrasruins} from "./Palavrasruins.js";
 const botaoMostraPalavras = document.querySelector("#botao-palavrachave");
 
 botaoMostraPalavras.addEventListener("click", mostraPalavrasChave);
@@ -14,9 +15,9 @@ function mostraPalavrasChave() {
 function processarTexto(texto) {
   let palavras = texto.split(/\P{L}+/u);
 for (let i in palavras) {
-        palavras[i] = palavras[i].toLowerCase();
+        palavras[i] = palavras[i].toLowerCase();/*padroniza todas as palavras para minúsculas*/
 }
-   palavras = tiraPalavrasRuins(palavras);
+   palavras = tirarPalavrasRuins(palavras);
 
   const frequencias = contaFrequencias(palavras);
 
@@ -43,11 +44,11 @@ function contaFrequencias(palavras) {
  } return frequencias;
 
   }
- function tiraPalavrasRuins(palavras) {
-    const PALAVRAS_RUINS = new Set(["para", "uma", "nós"]);
+ function tirarPalavrasRuins(palavras) {
+
     const palavrasBoas = [];
     for (let palavra of palavras) {
-        if (!PALAVRAS_RUINS.has(palavra) && palavra.length > 2) {
+        if (!Palavrasruins.has(palavra) && palavra.length >2) /* verifica se a palavra tem mais de 3 caracteres , senao tiver nao conta*/ {
             palavrasBoas.push(palavra);
         }
     }
